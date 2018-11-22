@@ -1,0 +1,23 @@
+{
+  "name": "insta_waterfall",
+  "version": "1.0.0",
+  "description": "Practice waterfall image lists with Hashsnap API",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chinsanchung/insta_waterfall.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chinsanchung/insta_waterfall/issues"
+  },
+  "homepage": "https://github.com/chinsanchung/insta_waterfall#readme",
+  "dependencies": {
+    "moment": "^2.22.2"
+  }
+}
