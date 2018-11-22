@@ -1,0 +1,172 @@
+.wrap {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 940px;
+  height: 900px;
+}
+#frame {
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0; 
+}
+
+#logo {
+  position: relative;
+  left: 42%;
+  width: 70px;
+  height: 70px;
+  vertical-align: middle;
+}
+
+#title {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  left: 44%;
+}
+
+.main {
+  width: 900px;
+  height: 900px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-root {
+  position: relative;
+  width: 25%;
+  padding-bottom: 25%;
+  float: left;
+}
+
+.post-head {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.post-context {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  position: relative;
+  margin: auto;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.user {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  color: white;
+  line-height: 2;
+}
+
+.popup {
+  position: fixed;
+  display: block;
+  /* fixed 할 경우 top, left, right, bottom 에 값이 생김..0으로 지움 */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* 100%로 한 이유: 페이지 전부를 popup 영역으로 해야 닫히는 이벤트 실행가능 */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
+.pop_side {
+  padding:24px;
+}
+.pop_content {
+  /* position: relative;
+  bottom: -5%;
+  left: 40%; */
+  width: 315px;
+  /* 4개가 세트로 대상의 크기와 상관없이 가운데 정렬. 외워도 좋음 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pop_img {
+  /* display: inline-block; */
+  /* pop_content 의 영역(파란색)이 팝업 전부를 감싸려면 이 방식으로 사각형을 만들어야함 */
+  width: 100%;
+  padding-bottom: 100%;
+  box-sizing: border-box;
+}
+
+.pop_icon {
+  /* 반복을 없앨 경우 테두리에 빈 공간이 나올수도. 같은 색으로 주변을 덮을 수 있음 */
+  background: url(./icon/icon-facebook.png) #4267b2 no-repeat center;
+  /* 너비,높이만으로는 이미지가 잘려서 나옴. background-size 가 필요함 */
+  width: 50px;
+  height: 50px;
+  background-size: 45px;
+  /* right: 25px; */
+  /* 방법 1. bottom, left 로 지정하면 화면이 줄어들 경우 위치가 바뀌어버림
+  그래서 float와 margin 으로 위치 설정
+  position: relative;
+  float: right;
+  margin-top: -45px;
+  margin-right: 10px;
+  */
+  /*방법 2. translateY(-50%)를 사용하면 크기에 비례해서 위치를 고정시킬 수 있음*/
+  transform: translateY(-50%);
+  position: absolute;
+  top: 0;
+  right: 25px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-sizing: border-box;
+}
+
+.pop_side {
+  position: relative;
+  display: inline-block;
+  padding: 20px 25px 10px 25px;
+  background-color: #fff;
+  font-size: 1.2em;
+}
+
+.pop_name {
+  margin-bottom: 17px;
+  margin-top: 5px;
+  color: #81c147;
+}
+.pop_caption {
+  margin-bottom: 48px;
+}
+.pop_date {
+  margin-top: 10px;
+  margin-bottom: 32px;
+  border-top: 1px solid #c0c0c0;
+  padding-top: 10px;
+  color: #c0c0c0;
+  font-size: 0.55em;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
