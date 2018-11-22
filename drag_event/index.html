@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 도형에 absolute 만 하면 위에 마진이 생김.
+    미리 html, body 에 너비, 높이, 마진을 지정해둬야함 */
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+    .rec-1 {
+      position: absolute;
+      z-index: 9;
+      background-color: sandybrown;
+      width: 100px;
+      height: 100px;
+    }
+    .rec-2 {
+      position: absolute;
+      z-index: 9;
+      background-color: aquamarine;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rec-1"></div>
+    <div class="rec-2"></div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>
