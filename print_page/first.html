@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upload image</title>
+    <link rel="stylesheet" href="style.css" id="s">
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <button onclick="test()" class="option one">1200x1800</button>
+            <button class="option two">1800x1200</button>
+        </div>
+        <div class="contents">
+            <div class="pic"></div>
+        </div>
+        <div class="footer">
+            <input type="file" class="upload" style="display:inline-block;" onchange="previewFile()"/>
+            <button class="print" style="display:inline-block;">PRINT</button>
+            <button class="back" style="display:none;">뒤로가기</button>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
