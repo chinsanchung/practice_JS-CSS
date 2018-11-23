@@ -4,7 +4,7 @@ Practice JavaScript, CSS and HTML during trainee
 ### crawler_test_vue
 - 인스타그램 HTML 요소들을 정규표현식으로 처리해 이미지만 띄우는 작업 진행.
 ### simple_popup
-- API 로부터 데이터를 읽어온 후 정렬 후 팝업 이벤트 연결.
+- API 로부터 데이터를 읽고, 정렬 후 팝업 이벤트 연결.
 - 이벤트 위임으로 상위에 팝업 설정, 그리고 팝업에 닫는 이벤트 연결.
 ### print_page
 - HTML5 의 `input type="file"` 그리고 `FileReader`의 `readAsDataURL`로 이미지를 가져옴.
@@ -13,6 +13,20 @@ Practice JavaScript, CSS and HTML during trainee
 - simple_popup 을 iframe 안에 넣어 상위 페이지 > 하위 페이지로 만듦.
 - 팝업을 iframe 안에서 작동하도록 만들지 않고, 상위 페이지에서 작동하도록 만듦.
   - `window.parent.postMessage`로 부모 js 파일에 데이터를 전송, 부모 js 파일은 `window.addEventListener('message', 함수)`로 이어받아서 팝업 창 생성.
+- 크기에 상관없이 위치를 고정시키는 방법 예시: `transform: translateY(-50%);position: absolute;top: 0;right: 25px;`
+- 대상의 크기와 상관없이 가운데 정렬 네 개가 세트임.
+```CSS
+{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 315px;
+}
+```
+- 팝업 창을 지우기
+  1. 미리 팝업 div 를 만들어두고 innerHTML 로 클릭 때마다 바꾸기, 닫을 때는 display:none 으로 보이지 않게 처리.
+  2. 팝업을 닫을 때 가상 DOM 에 저장해서 HTML 페이지에 div 가 사라지도록 처리. 띄울 때는 innerHTML 로 바꾸고 가상 DOM 에서 다시 가져옴.
 ### console_output
 1. [json_out.js](https://github.com/chinsanchung/practice_JS-CSS/blob/master/console_output/json_out.js) : JSON 의 원시값, 배열, 객체를 콘솔에 출력하는 함수.
 2. [element_out.js](https://github.com/chinsanchung/practice_JS-CSS/blob/master/console_output/element_out.js) : 루트 요소를 입력하면 자기 자신과 모든 자식 요소들을 콘솔로 출력하는 함수.
