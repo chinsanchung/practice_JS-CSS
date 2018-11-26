@@ -1,0 +1,69 @@
+.flip-number {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 250px;
+}
+.flip-number .front-top, .flip-number .back-top, .flip-number .front-bottom, .flip-number .back-bottom {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.flip-number .front-top, .flip-number .back-bottom {
+  z-index: 3;
+}
+.flip-number .front-bottom, .flip-number .back-top {
+  z-index: 2;
+}
+.flip-number .back-bottom {
+  transform: rotateX(180deg);
+}
+
+.flip-number .top, .flip-number .bottom {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: aqua;
+  overflow: hidden;
+}
+.flip-number .top {
+  transform-origin: 0 100%;
+  z-index: 3;
+}
+.flip-number .bottom {
+  top: 50%;
+  transform-origin: 0 0;
+  z-index: 2;
+}
+.flip-number .back .bottom {
+  z-index: 3;
+
+}
+.flip-number .number {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flip-number .top .number {
+  top: 0;
+}
+.flip-number .bottom .number {
+  bottom: 0;
+}
+/* 임의로 추가 시작 */
+.main {
+  width: 1200px;
+  height: 400px;
+  position: relative;
+}
+.timer {
+  width: 150px;
+  height: 300px;
+  display: inline-block;
+  margin: 0.3%;
+}

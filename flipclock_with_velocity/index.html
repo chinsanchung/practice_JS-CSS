@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.min.js"></script>
+  <style type="text/css">
+    .flip-number {
+      display: inline-block;
+      position: relative;
+      width: 150px;
+      height: 300px;
+      font-size: 250px;
+    }
+
+    .flip-number .front-top,
+    .flip-number .back-top,
+    .flip-number .front-bottom,
+    .flip-number .back-bottom {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .flip-number .front-top,
+    .flip-number .back-bottom {
+      z-index: 3;
+    }
+
+    .flip-number .front-bottom,
+    .flip-number .back-top {
+      z-index: 2;
+    }
+
+    .flip-number .back-bottom {
+      transform: rotateX(180deg);
+    }
+
+    .flip-number .top,
+    .flip-number .bottom {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background: aqua;
+      overflow: hidden;
+    }
+
+    .flip-number .top {
+      transform-origin: 0 100%;
+      z-index: 3;
+    }
+
+    .flip-number .bottom {
+      top: 50%;
+      transform-origin: 0 0;
+      z-index: 2;
+    }
+
+    .flip-number .back .bottom {
+      z-index: 3;
+
+    }
+
+    .flip-number .number {
+      position: absolute;
+      width: 100%;
+      height: 200%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flip-number .top .number {
+      top: 0;
+    }
+
+    .flip-number .bottom .number {
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="second-1">
+    <div class="flip-number">
+        <div class="front-top">
+          <div class="top">
+            <div class="number">0</div>
+          </div>
+        </div>
+        <div class="front-bottom">
+          <div class="bottom">
+            <div class="number">0</div>
+          </div>
+        </div>
+        <div class="back-top">
+          <div class="top">
+            <div class="number">1</div>
+          </div>
+        </div>
+        <div class="back-bottom">
+          <div class="bottom">
+            <div class="number">1</div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <button>FLIP</button>
+  <script>
+    const timer = new class {
+      flipHandler() {
+        const frontTop = document.querySelector(`.flip-number .front-top`);
+        const backBottom = document.querySelector(`.flip-number .back-bottom`);
+        const front1 = document.querySelector(`.front-top .number`);
+        const front2 = document.querySelector(`.front-bottom .number`);
+        const back1 = document.querySelector(`.back-top .number`);
+        const back2 = document.querySelector(`.back-bottom .number`);
+        
+        let num = 1;
+        let time = 1000;
+        let count = 0;
+        frontTop.velocity({
+          transform: ['rotateX(180deg)', 'rotateX(0deg)']
+        });
+        backBottom.velocity({
+          transform: ['rotateX(0deg)', 'rotateX(180deg)']
+        });
+        const loop = () => {
+          setTimeout(() => {
+            front1.innerText = num;
+            front2.innerText = num;
+            // velocity 프로미스가능..all 로 한꺼번에 끝났을 때
+            frontTop.velocity({
+              transform: ['rotateX(180deg)', 'rotateX(0deg)']
+            });
+            backBottom.velocity({
+              transform: ['rotateX(0deg)', 'rotateX(180deg)']
+            });
+            back1.innerText = num + 1;
+            back2.innerText = num + 1;
+            num++;
+          }, time);
+          time += 1000;
+          count += 1;
+          console.log(count, time);
+        }
+        while (count < 8) { loop(); }
+      }
+    }
+  /*
+    // 클래스없이
+    const flipHandler = () => {
+      console.log('FLIP!');
+      const frontTop = document.querySelector('.flip-number .front-top');
+      const backBottom = document.querySelector('.flip-number .back-bottom');
+      const front1 = document.querySelector('.front-top .number');
+      const front2 = document.querySelector('.front-bottom .number');
+      const back1 = document.querySelector('.back-top .number');
+      const back2 = document.querySelector('.back-bottom .number');
+      let num = 1;
+      let time = 1000;
+      let count = 0;
+      frontTop.velocity({
+        transform: ['rotateX(180deg)', 'rotateX(0deg)']
+      });
+      backBottom.velocity({
+        transform: ['rotateX(0deg)', 'rotateX(180deg)']
+      });
+      const loop = () => {
+        setTimeout(() => {
+          front1.innerText = num;
+          front2.innerText = num;
+          // velocity 프로미스가능..all 로 한꺼번에 끝났을 때
+          frontTop.velocity({
+            transform: ['rotateX(180deg)', 'rotateX(0deg)']
+          });
+          backBottom.velocity({
+            transform: ['rotateX(0deg)', 'rotateX(180deg)']
+          });
+          back1.innerText = num + 1;
+          back2.innerText = num + 1;
+          num++;
+        }, time);
+        time += 1000;
+        count += 1;
+        console.log(count, time);
+      }
+      while (count < 8) {
+        loop();
+      }
+  
+    };
+    */
+    const button = document.getElementsByTagName('button')[0];
+    button.addEventListener('click', timer.flipHandler);
+
+  </script>
+</body>
+
+</html>
