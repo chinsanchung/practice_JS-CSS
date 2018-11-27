@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style id="s">
+    .rec {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="rec"></div>
+  </div>
+  <script>
+    const rec = document.querySelector('.content').children[0];
+
+    const move = (el, st, end, styles) => {
+      if (st.hasOwnProperty('y')) {
+/*         const loop = i => {
+          console.log(i);
+          el.style.left = i['x'] + 'px';
+          el.style.top = i['y'] + 'px';
+          if ((i['x'] < end['x']) && (i['y'] < end['y'])) setTimeout(loop, 60, {x: i['x'] + 2, y: i['y'] + 2});
+        }
+        loop(st); */
+        setStyle(el, styles);
+        const start = Date.now();
+        const moving = setInterval(() => {
+          const next = Math.floor((Date.now() - start) / 100);
+          el.style.left = (st['x'] + next) + 'px';
+          el.style.top = (st['y'] + next) + 'px';
+          if ((st['x'] + next === end['x']) && (st['y'] + next === end['y'])) {
+            clearInterval(moving);
+            return;
+          }
+        }, 60);
+      } else {
+        const loop = i => {
+          console.log(i);
+          el.style.left = i + 'px';
+          if (i < end) setTimeout(loop, 60, i + 2);
+        }
+        loop(st);
+      }
+    }
+    const setStyle = (el, styles) => {
+      let text = '';
+      for (const key in styles) {
+        text += `${key}:${styles[key]}`;
+      }
+      el.style += text;
+    }
+/*
+    class Moving {
+      constructor(el, start, end, styles) {
+        this.el = el;
+        this.start = start;
+        this.end = end;
+        this.styles = styles;
+      }
+      move() {
+        let start = performance.now();
+        const duration = 1000;
+        requestAnimationFrame(function insideMove(time) {
+          let timeFraction = (time - start) / duration;
+          if (timeFraction > 1) timeFraction = 1;
+          let progress = timing(timeFraction);
+          this.el.style.left = (progress * 10)+ 'px';
+          if (timeFraction < 1) requestAnimationFrame(insideMove);
+        })
+      }
+      setStyle(el, style) {
+        let text = '';
+        for (const key in style) {
+          text += `${key}:${style[key]};`;
+        }
+        el.style = text;
+      }
+    }
+*/  
+  </script>
+</body>
+</html>
