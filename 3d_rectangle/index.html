@@ -16,20 +16,19 @@
       height: 100%;
     }
     .box {
-      left: 400px;
-      top: 400px;
       position: relative;
       /* 각 도형의 너비,높이와 맞춰야 축이 정상적으로 지정됨 */
       width: 200px;
       height: 200px;
-      /* preserve-3d 는 익스플로러에서 버그가 있음. 익스플로러로 할 때는 이것을 개별 속성으로 내려야함 */
+      /* preserve-3d 는 익스플로러에서 버그가 있음. 익스플로러로 할 때는 이것을 개별 속성으로 내려야함
+         preserve-3d 는 자식들도 부모를 따라서 3차원으로 처리하도록 해주는 기능 */
       transform-style: preserve-3d;
       /* 밑의 도형의 front 가 Z 축으로 100 이동했으므로 여기서 -100을 하면 원래 200x200 사이즈가 됨
         애니메이션을 할 때는 빼야함. */
-      transform: translateZ(-100px);
+      /* transform: translateZ(-100px); */
       transition-property: all;
       /* animation */
-      /* animation: spin 2s infinite; */
+      animation: spin 2s infinite;
       /* transition: transform 1s; */
     }
     /* .box:hover {
@@ -50,6 +49,9 @@
       /* transform */
       /* transform-origin: center; */
       transition-property: all;
+      /* 정육면체는 2차원 도형의 뒷면을 보여줄 필요가 없다. 그래서 뒷면을 감추면 컴퓨터의 부하가 줄어든다.
+         이렇게 뒷면을 가리는 것을 은면 처리, 같은 말로 컬링 이라고 부른다.*/
+      backface-visibility: hidden;
     }
     /* rotateX,Y 로 평면을 뒤집고 같은 Z값으로 고정시킴. Z 축으로 이동 */
     .box-front {
