@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Virtual-keyboard</title>
+  <style id="s">
+    html, body {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      box-sizing: border-box;
+    }
+    #input-text {
+      width: 400px;
+      height: 400px;
+      font-size:20px;
+    }
+  </style>
+</head>
+<body>
+  <input id="input-text" type="text" size="50">
+  <div id="virtual-keyboard">
+    <div id="small-sets" style="display:block"></div>
+    <div id="capital-sets" style="display:none"></div>
+  </div>
+  <script src="./keyboard.js"></script>
+  <script src="./keyboard_CSS.js"></script>
+  <script>
+    let inputText = document.querySelector('#input-text');
+    const keyboard = new Keyboard(inputText);
+  </script>
+</body>
+</html>
