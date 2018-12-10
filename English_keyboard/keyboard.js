@@ -9,7 +9,19 @@ class Keyboard {
     this.appendKeys(this.smallSet, 'small-sets');
     this.appendKeys(this.capitalSet, 'capital-sets');
     this.text = text;
-    document.querySelector('#virtual-keyboard').addEventListener('click', e => this.inputKey(e));
+/*     document.querySelector('#virtual-keyboard').addEventListener('click', e => {
+      e.preventDefault();
+      this.inputKey(e);
+    }); */
+    // 1211. mousedown 이벤트 막기
+    document.querySelector('#virtual-keyboard').addEventListener('mousedown', e => {
+      e.preventDefault();
+      this.inputKey(e);
+    });
+    // 1211. blur 로 포커스가 해체됐을 때 문장의 커서 끝을 임의로 지정
+    this.text.addEventListener('blur', e => {
+      this.text.selectionEnd = this.text.value.length;
+    });
   }
   keyParse(str) {
     const key_set = [];
@@ -67,19 +79,15 @@ class Keyboard {
     this.text.selectionStart = this.text.selectionEnd = index;
   }
   typing(value) {
-    // TODO: 1210. scrollLeft로 입력할 위치를 옮김. 이벤트를 막아서 focus() 안되도록
+    // TODO: 1210. scrollLeft로 입력할 위치를 옮김. mousedown 이벤트를 막아서 focus() 안되도록
     // `preventDefault`,`focus`, `blur`,`onfocus`, `onblur`
     const { text } = this;
     const current_cursor = this.getCursor();
     const before_text = text.value.slice(0, current_cursor);
     const after_text = text.value.slice(current_cursor);
     text.value = `${before_text}${value}${after_text}`;
+    this.setCursor(current_cursor + value.length);
     text.focus();
-    if (current_cursor + value.length < 35) {
-      this.setCursor(current_cursor + value.length);
-    } else {
-      text.scrollLeft = current_cursor + value.length + 1;
-    }
   }
   inputKey(e) {
     const { text } = this;
@@ -120,9 +128,7 @@ class Keyboard {
           this.typing(' ');
           break;
         default:
-          e.preventDefault();  
           this.typing(val);
-          
       }
     }
   }
