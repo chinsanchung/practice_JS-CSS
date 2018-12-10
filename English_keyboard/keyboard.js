@@ -67,6 +67,8 @@ class Keyboard {
     this.text.selectionStart = this.text.selectionEnd = index;
   }
   typing(value) {
+    // TODO: 1210. scrollLeft로 입력할 위치를 옮김. 이벤트를 막아서 focus() 안되도록
+    // `preventDefault`,`focus`, `blur`,`onfocus`, `onblur`
     const { text } = this;
     const current_cursor = this.getCursor();
     const before_text = text.value.slice(0, current_cursor);
@@ -76,7 +78,7 @@ class Keyboard {
     if (current_cursor + value.length < 35) {
       this.setCursor(current_cursor + value.length);
     } else {
-      text.scrollLeft = 0;
+      text.scrollLeft = current_cursor + value.length + 1;
     }
   }
   inputKey(e) {
@@ -118,7 +120,9 @@ class Keyboard {
           this.typing(' ');
           break;
         default:
+          e.preventDefault();  
           this.typing(val);
+          
       }
     }
   }
