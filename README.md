@@ -48,3 +48,16 @@ velocity.js 라이브러리를 사용해 FlipClock.js 처럼 움직이는 시계
 ### animation_library
 [JavaScript animations](https://javascript.info/js-animation)을 참고해 velocity 같은 애니메이션 라이브러리 만듦.
 애니메이션을 제어할 수 있는 객체를 반환.
+- 구현한 항목들
+  - 좌,우측 + 이동, 속도 제어 : requestAnimationFrame 을 사용
+### array_methods_myself
+배열 메소드들과 배열을 제어할 함수를 임의로 만들어서 사용하기.
+- 종류: 
+  - 배열 메소드: forEach, map, filter
+  - remove : 항목 삭제
+  - shuffle : 항목들 무작위로 섞기
+  - rand : 임의의 항목 하나를 가져오기
+  - first : 배열의 첫 항목을 가져오기
+  - last : 배열의 마지막 항목을 가져오기
+### English_keyboard
+바닐라 자바스크립트로 영어 키보드 라이브러리 만들기. 버츄얼 키보드 컴포넌트를 참고해서 작성, 그것을 확장할 수 있는 형태.
