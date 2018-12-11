@@ -15,13 +15,16 @@ class Keyboard {
     }); */
     // 1211. mousedown 이벤트 막기
     document.querySelector('#virtual-keyboard').addEventListener('mousedown', e => {
+      const { text } = this;
       e.preventDefault();
       this.inputKey(e);
+      text.focus();
     });
     // 1211. blur 로 포커스가 해체됐을 때 문장의 커서 끝을 임의로 지정
-    this.text.addEventListener('blur', e => {
-      this.text.selectionEnd = this.text.value.length;
-    });
+    this.text.onblur = () => {
+      this.text.focus();
+      console.log(this.text, this.text.scrollLeft);
+    }
   }
   keyParse(str) {
     const key_set = [];
@@ -56,6 +59,7 @@ class Keyboard {
     array.forEach(sets => {
       const keys = this.createEl('div', { class: 'key-set' });
       sets.forEach(set => {
+        console.log(set);
         if (set.type === 'char') {
           const key = this.createEl('button', { class: 'key', 'data-type': set.type, 'data-value': set.value }, set.key);
           keys.appendChild(key);
@@ -87,7 +91,7 @@ class Keyboard {
     const after_text = text.value.slice(current_cursor);
     text.value = `${before_text}${value}${after_text}`;
     this.setCursor(current_cursor + value.length);
-    text.focus();
+    // text.focus();
   }
   inputKey(e) {
     const { text } = this;
@@ -111,24 +115,26 @@ class Keyboard {
             const before_text = text.value.slice(0, current_cursor - 1);
             const after_text = text.value.slice(current_cursor);
             text.value = `${before_text}${after_text}`;
-            text.focus();
             this.setCursor(current_cursor - 1);
           } else {
-            text.focus();
             this.setCursor(current_cursor);
           }
           break;
         case 'tab':
           this.typing('  ');
+          // 1211. 글자 추가할 때마다 scrollLeft 추가, 커서 위치를 조정.
+          text.scrollLeft += 40;
           break;
         case 'enter':
           alert(text.value);
           break;
         case 'space':
           this.typing(' ');
+          text.scrollLeft += 20;
           break;
         default:
           this.typing(val);
+          text.scrollLeft += 20;
       }
     }
   }
