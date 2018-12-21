@@ -20,7 +20,7 @@ class Move {
     this.sx = sx;
     this.ex = ex;
 //메소드에서 사용할 변수. 클래스 밖에서 객체로 만들어서 연결할 필요는 없다
-    this.speed = 60;
+    this.speed = 10;
     this.stop_x = false;
 //생성자는 클래스 인스턴스화(생성)하자마자 바로 호출된다. 정의하자
     this.animate();
@@ -85,7 +85,7 @@ const timeout_animation = (el, sx, ex, sy, ey) => {
 
 //interval_animation(purple, 100, 0, 100, 0);
 
-//const move = new Move(purple, 0, 100);
+const move = new Move(purple, 0, 100);
 
 /*
 move 변수에 animate 함수를 실행시키고,
@@ -121,4 +121,3 @@ Move.prototype.stop = function() {
 }
 const move1 = new Move(purple, 0, 100);
 */
-
